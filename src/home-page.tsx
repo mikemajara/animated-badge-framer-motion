@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "./layout";
 import {
   Stack,
@@ -16,38 +16,56 @@ const AFlex = motion(Flex);
 const AStack = motion(Stack);
 
 const badges = [
-  "Bonjour - (French)",
+  "Olá - (Portuguese)",
   "Hola - (Spanish)",
   "Zdravstvuyte - (Russian)",
   "Nǐn hǎo - (Chinese)",
   "Salve - (Italian)",
   "Konnichiwa - (Japanese)",
-  "Guten Tag - (German)",
-  "Olá - (Portuguese)",
+  "Yassas - (Greek)",
   "Anyoung haseyo - (Korean)",
+  "Bonjour - (French)",
   "Asalaam alaikum (Peace be upon you) - (Arabic)",
   "Goddag - (Danish)",
   "Shikamoo - (Swahili)",
   "Goedendag - (Dutch)",
-  "Yassas - (Greek)",
+  "Guten Tag - (German)",
   "Dzień dobry - (Polish)",
   "Selamat siang - (Indonesian)",
   "Namaste, Namaskar - (Hindi)",
   "Merhaba - (Turkish)"
 ];
 
+// const sortByString = (a: string,b: string) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
+
 export const HomePage = (props: any) => {
-  const [shouldCollapseAll, setShouldCollapseAll] = React.useState(false);
+  const [shouldCollapseAll, setShouldCollapseAll] = useState(false);
   const toggleShouldCollapseAll = (e) =>
     setShouldCollapseAll(!shouldCollapseAll);
+  const [isEnd, setIsEnd] = useState(false);
+  
+  const [shouldSortItems, setShouldSortItems] = useState(false)
+  const toggleShouldSortItems = (e) =>
+  setShouldSortItems(!shouldSortItems);
 
-  const [isEnd, setIsEnd] = React.useState(false);
+  const itemComponents = badges.map((e, idx) => ({
+      key: e,
+      component: <AnimatedButton
+        layout
+        expanded={!shouldCollapseAll}
+        text={e}
+        style={{ marginTop: 10, marginLeft: 10 }}
+        key={e}
+      />
+    }
+  ))
+
   return (
     <Layout>
       <Stack align="flex-start">
         <Button
           // onClick={() => setIsEnd(!isEnd)}
-          onClick={toggleShouldCollapseAll}
+          onClick={toggleShouldSortItems}
           variant={shouldCollapseAll ? "solid" : "outline"}
         >
           {shouldCollapseAll ? "show" : "hide"}
@@ -61,15 +79,10 @@ export const HomePage = (props: any) => {
               justifyContent: isEnd ? "flex-end" : "flex-start"
             }}
           >
-            {badges.map((e, idx) => (
-              <AnimatedButton
-                layout
-                expanded={!shouldCollapseAll}
-                text={e}
-                style={{ marginTop: 10, marginLeft: 10 }}
-                key={e}
-              />
-            ))}
+            {shouldSortItems
+            ? itemComponents.sort((a,b) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0).map(e => e.component)
+            : itemComponents.map(e => e.component)
+            }
           </AFlex>
         </AnimateSharedLayout>
         {Array(10)
