@@ -12,14 +12,21 @@ import {
 } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { sample } from 'lodash';
+import { sample } from "lodash";
 
 const AFlex = motion(Flex);
 const ABox = motion(Box);
 const AButton = motion(Button);
 const AIcon = motion(Icon);
 
-const colors = ["#e40303","#ff8c00","#ffed00","#008026","#004dff","#750787"]
+const colors = [
+  "#e40303",
+  "#ff8c00",
+  "#ffed00",
+  "#008026",
+  "#004dff",
+  "#750787"
+];
 
 export const AnimatedButton = (props: any) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -27,12 +34,12 @@ export const AnimatedButton = (props: any) => {
   const [isContentShowing, setIsContentShowing] = useState(true);
 
   const toggleBackgroundColor = () => {
-    setBackgroundColor(sample(colors)+"79" || "white")
-  }
+    setBackgroundColor(sample(colors) + "55" || "white");
+  };
 
   const toggleContentShowing = () => {
-    setIsContentShowing(!isContentShowing)
-  }
+    setIsContentShowing(!isContentShowing);
+  };
 
   React.useEffect(() => {
     setIsExpanded(props.expanded);
@@ -52,10 +59,9 @@ export const AnimatedButton = (props: any) => {
   const buttonStyle = {
     padding: "8px 16px",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
     border: ".5px solid black",
-    // width: "49%",
     height: "40px",
     borderRadius: "10px",
     backgroundColor: "white"
@@ -64,45 +70,37 @@ export const AnimatedButton = (props: any) => {
   return (
     <ABox
       layout
-      onClick={toggleContentShowing}
+      onClick={toggleExpanded}
       // onDoubleClick={toggleContentShowing}
-      onAuxClick={toggleBackgroundColor}
+      // onMouseEnter={toggleBackgroundColor}
       style={{
         ...buttonStyle,
         ...props.style,
         paddingRight: isExpanded ? "16px" : "8px",
-        height: "auto",
-        // height: isContentShowing ? "40px" : "auto",
         borderRadius: "10px",
-        backgroundColor,
+        backgroundColor: sample(colors)+"55"
       }}
+      transition={{duration: "3"}}
     >
-      {/* <Box
-      onAuxClick>
-
-      </Box> */}
-      <AFlex align="center" justify="center">
-        <AIcon layout mr="2" as={SunIcon}/>
-        {/* <AnimatePresence> */}
-          {isExpanded && <motion.div
-          layout
+      <AIcon layout mr="2" as={SunIcon} />
+      <AnimatePresence>
+      {isExpanded && (
+        <motion.div
+          // layout
           style={{
             overflowX: "hidden",
             whiteSpace: "nowrap"
           }}
           animate={{
-            width: isExpanded ? "auto" : 0
+            width: isExpanded ? "auto" : 0,
+            opacity: isExpanded ? 1 : 0
           }}
+          transition={{duration: "3"}}
         >
           {props.text}
-        </motion.div>}
-      </AFlex>
-      <ABox>
-        <AnimatePresence>
-          {isContentShowing && <motion.div>props.content</motion.div>}
-        </AnimatePresence>
-      </ABox>
-        {/* </AnimatePresence> */}
+        </motion.div>
+      )}
+      </AnimatePresence>
     </ABox>
   );
 };
