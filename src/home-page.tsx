@@ -125,7 +125,7 @@ export const HomePage = (props: any) => {
         >
           {shouldCollapseAll ? "show" : "hide"}
         </Button>
-        <AnimateSharedLayout>
+        <AnimateSharedLayout transition={{duration: 2}}>
           <AFlex
             layout
             flexWrap="wrap"
