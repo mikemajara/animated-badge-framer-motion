@@ -24,10 +24,10 @@ const colors = ["#e40303","#ff8c00","#ffed00","#008026","#004dff","#750787"]
 export const AnimatedButton = (props: any) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState("white");
-  const [isContentShowing, setIsContentShowing] = useState(false);
+  const [isContentShowing, setIsContentShowing] = useState(true);
 
   const toggleBackgroundColor = () => {
-    setBackgroundColor(sample(colors) || "white")
+    setBackgroundColor(sample(colors)+"79" || "white")
   }
 
   const toggleContentShowing = () => {
@@ -52,7 +52,7 @@ export const AnimatedButton = (props: any) => {
   const buttonStyle = {
     padding: "8px 16px",
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     border: ".5px solid black",
     // width: "49%",
@@ -64,18 +64,24 @@ export const AnimatedButton = (props: any) => {
   return (
     <ABox
       layout
-      onClick={toggleExpanded}
-      onDoubleClick={toggleContentShowing}
-      onMouseEnter={toggleBackgroundColor}
+      onClick={toggleContentShowing}
+      // onDoubleClick={toggleContentShowing}
+      onAuxClick={toggleBackgroundColor}
       style={{
         ...buttonStyle,
         ...props.style,
         paddingRight: isExpanded ? "16px" : "8px",
+        height: "auto",
         // height: isContentShowing ? "40px" : "auto",
         borderRadius: "10px",
         backgroundColor,
       }}
     >
+      {/* <Box
+      onAuxClick>
+
+      </Box> */}
+      <AFlex align="center" justify="center">
         <AIcon layout mr="2" as={SunIcon}/>
         {/* <AnimatePresence> */}
           {isExpanded && <motion.div
@@ -90,6 +96,12 @@ export const AnimatedButton = (props: any) => {
         >
           {props.text}
         </motion.div>}
+      </AFlex>
+      <ABox>
+        <AnimatePresence>
+          {isContentShowing && <motion.div>props.content</motion.div>}
+        </AnimatePresence>
+      </ABox>
         {/* </AnimatePresence> */}
     </ABox>
   );
