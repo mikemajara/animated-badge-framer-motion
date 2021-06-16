@@ -49,11 +49,6 @@ export const AnimatedButton = (props: any) => {
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
-    if (isExpanded) {
-      textControls.start("expanded");
-    } else {
-      textControls.start("collapsed");
-    }
   };
 
   const buttonStyle = {
@@ -80,22 +75,20 @@ export const AnimatedButton = (props: any) => {
         borderRadius: "10px",
         backgroundColor: sample(colors)+"55"
       }}
-      transition={{duration: "3"}}
+      // transition={{duration: "2"}}
     >
       <AIcon layout mr="2" as={SunIcon} />
       <AnimatePresence>
       {isExpanded && (
         <motion.div
-          // layout
+          layout
           style={{
             overflowX: "hidden",
             whiteSpace: "nowrap"
           }}
-          animate={{
-            width: isExpanded ? "auto" : 0,
-            opacity: isExpanded ? 1 : 0
-          }}
-          transition={{duration: "3"}}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           {props.text}
         </motion.div>
