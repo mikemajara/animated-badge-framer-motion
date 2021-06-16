@@ -44,7 +44,7 @@ export const AnimatedButton = (props) => {
   };
 
   return (
-    <motion.div
+    <AButton
       {...props}
       onClick={toggleExpanded}
       style={{
@@ -67,6 +67,6 @@ export const AnimatedButton = (props) => {
       >
         {props.text}
       </motion.div>
-    </motion.div>
+    </AButton>
   );
 };

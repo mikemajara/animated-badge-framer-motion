@@ -46,7 +46,8 @@ export const HomePage = (props: any) => {
     <Layout>
       <Stack align="flex-start">
         <Button
-          onClick={() => setIsEnd(!isEnd)}
+          // onClick={() => setIsEnd(!isEnd)}
+          onClick={toggleShouldCollapseAll}
           variant={shouldCollapseAll ? "solid" : "outline"}
         >
           {shouldCollapseAll ? "show" : "hide"}
@@ -62,10 +63,11 @@ export const HomePage = (props: any) => {
           >
             {badges.map((e, idx) => (
               <AnimatedButton
-                layoutId="item"
+                layout
                 expanded={!shouldCollapseAll}
                 text={e}
                 style={{ marginTop: 10, marginLeft: 10 }}
+                key={e}
               />
             ))}
           </AFlex>
