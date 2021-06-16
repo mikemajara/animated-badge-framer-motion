@@ -79,9 +79,10 @@ export const AnimatedButton = (props: any) => {
     >
       <AIcon layout mr="2" as={SunIcon} />
       <AnimatePresence>
-      {isExpanded && (
+      {
+        isExpanded && (
         <motion.div
-          layout
+          // layout
           style={{
             overflowX: "hidden",
             whiteSpace: "nowrap"
@@ -89,6 +90,7 @@ export const AnimatedButton = (props: any) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          // transition={{duration: ".1"}}
         >
           {props.text}
         </motion.div>
