@@ -54,6 +54,7 @@ export const AnimatedButton = (props: any) => {
       style={{
         ...buttonStyle,
         ...props.style,
+        paddingRight: isExpanded ? "16px" : "8px",
         // height: isExpanded ? "40px" : "auto",
         height: "auto",
         borderRadius: "10px"
@@ -61,11 +62,20 @@ export const AnimatedButton = (props: any) => {
     >
       <AFlex>
         <AIcon layout mr="2" as={SunIcon} />
-        <motion.div layout>{props.text}</motion.div>
+        <AnimatePresence>{isExpanded && <motion.div
+          layout
+          style={{
+            overflowX: "hidden",
+            whiteSpace: "nowrap"
+          }}
+        >
+          {props.text}
+        </motion.div>}
+        </AnimatePresence>
       </AFlex>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isExpanded && <ABox>{props.content}</ABox>}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </ABox>
   );
 };
