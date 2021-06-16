@@ -16,42 +16,97 @@ const AFlex = motion(Flex);
 const AStack = motion(Stack);
 
 const badges = [
-  "Olá - (Portuguese)",
-  "Hola - (Spanish)",
-  "Zdravstvuyte - (Russian)",
-  "Nǐn hǎo - (Chinese)",
-  "Salve - (Italian)",
-  "Konnichiwa - (Japanese)",
-  "Yassas - (Greek)",
-  "Anyoung haseyo - (Korean)",
-  "Bonjour - (French)",
-  "Asalaam alaikum (Peace be upon you) - (Arabic)",
-  "Goddag - (Danish)",
-  "Shikamoo - (Swahili)",
-  "Goedendag - (Dutch)",
-  "Guten Tag - (German)",
-  "Dzień dobry - (Polish)",
-  "Selamat siang - (Indonesian)",
-  "Namaste, Namaskar - (Hindi)",
-  "Merhaba - (Turkish)"
+  {
+    title: "Olá - (Portuguese)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Hola - (Spanish)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Zdravstvuyte - (Russian)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Nǐn hǎo - (Chinese)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Salve - (Italian)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Konnichiwa - (Japanese)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Yassas - (Greek)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Anyoung haseyo - (Korean)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Bonjour - (French)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Asalaam alaikum (Peace be upon you) - (Arabic)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Goddag - (Danish)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Shikamoo - (Swahili)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Goedendag - (Dutch)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Guten Tag - (German)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Dzień dobry - (Polish)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Selamat siang - (Indonesian)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Namaste, Namaskar - (Hindi)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
+  {
+    title: "Merhaba - (Turkish)",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"
+  },
 ];
+
+
 
 // const sortByString = (a: string,b: string) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
 
 export const HomePage = (props: any) => {
   const [shouldCollapseAll, setShouldCollapseAll] = useState(false);
-  const toggleShouldCollapseAll = (e) =>
+  const toggleShouldCollapseAll = () =>
     setShouldCollapseAll(!shouldCollapseAll);
   const [isEnd, setIsEnd] = useState(false);
   
   const [shouldSortItems, setShouldSortItems] = useState(false)
-  const toggleShouldSortItems = (e) =>
-  setShouldSortItems(!shouldSortItems);
+  const toggleShouldSortItems = () =>
+    setShouldSortItems(!shouldSortItems);
 
   const itemComponents = badges.map((e, idx) => ({
       key: e,
       component: <AnimatedButton
-        layout
         expanded={!shouldCollapseAll}
         text={e}
         style={{ marginTop: 10, marginLeft: 10 }}
@@ -65,7 +120,7 @@ export const HomePage = (props: any) => {
       <Stack align="flex-start">
         <Button
           // onClick={() => setIsEnd(!isEnd)}
-          onClick={toggleShouldSortItems}
+          onClick={toggleShouldCollapseAll}
           variant={shouldCollapseAll ? "solid" : "outline"}
         >
           {shouldCollapseAll ? "show" : "hide"}
@@ -75,13 +130,19 @@ export const HomePage = (props: any) => {
             layout
             flexWrap="wrap"
             width="full"
-            style={{
-              justifyContent: isEnd ? "flex-end" : "flex-start"
-            }}
+            flexDir="row"
           >
-            {shouldSortItems
-            ? itemComponents.sort((a,b) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0).map(e => e.component)
-            : itemComponents.map(e => e.component)
+            {
+              badges.map((e, idx) => {
+                return <AnimatedButton
+                  layout
+                  expanded={!shouldCollapseAll}
+                  text={e.title}
+                  content={e.content}
+                  style={{ marginTop: 10, marginLeft: 10 }}
+                  key={e}
+                />
+              })
             }
           </AFlex>
         </AnimateSharedLayout>

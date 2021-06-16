@@ -7,15 +7,19 @@ import {
   HStack,
   Button,
   IconButton,
-  chakra
+  chakra,
+  Icon
 } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 
+const AFlex = motion(Flex);
+const ABox = motion(Box);
 const AButton = motion(Button);
+const AIcon = motion(Icon);
 
-export const AnimatedButton = (props) => {
-  const [isExpanded, setIsExpanded] = React.useState(true);
+export const AnimatedButton = (props: any) => {
+  const [isExpanded, setIsExpanded] = React.useState(false);
 
   React.useEffect(() => {
     setIsExpanded(props.expanded);
@@ -34,39 +38,34 @@ export const AnimatedButton = (props) => {
 
   const buttonStyle = {
     padding: "8px 16px",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    border: "1px solid black",
-    width: "auto",
-    height: "40px",
+    // display: "flex",
+    // flexDirection: "row",
+    // alignItems: "center",
+    border: ".5px solid black",
+    // width: "49%",
+    // height: "40px",
     borderRadius: "10px"
   };
 
   return (
-    <AButton
-      {...props}
+    <ABox
+      layout
       onClick={toggleExpanded}
       style={{
         ...buttonStyle,
         ...props.style,
-        paddingRight: isExpanded ? "16px" : "8px",
-        borderRadius: "10px",
+        // height: isExpanded ? "40px" : "auto",
+        height: "auto",
+        borderRadius: "10px"
       }}
     >
-      <SunIcon mr="2" />
-      <motion.div
-        style={{
-          overflowX: "hidden",
-          whiteSpace: "nowrap"
-        }}
-        animate={{
-          width: isExpanded ? "auto" : 0
-        }}
-        transition={{ type: "spring", bounce: 0 }}
-      >
-        {props.text}
-      </motion.div>
-    </AButton>
+      <AFlex>
+        <AIcon layout mr="2" as={SunIcon} />
+        <motion.div layout>{props.text}</motion.div>
+      </AFlex>
+      <AnimatePresence>
+        {isExpanded && <ABox>{props.content}</ABox>}
+      </AnimatePresence>
+    </ABox>
   );
 };
